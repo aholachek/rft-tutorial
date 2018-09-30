@@ -1,23 +1,173 @@
 import { Head } from 'mdx-deck'
+import { CodeSurfer } from "mdx-deck-code-surfer"
+import oceanicNext from "prism-react-renderer/themes/oceanicNext"
+
+import NoAnimation from './code-examples/no-animation'
+import BasicAnimation from './code-examples/basic-animation.js'
+import InverseAnimation from './code-examples/inverse.js'
+import AnimateChildrenNoShouldFlip from './code-examples/animate-children-no-shouldflip.js'
+import AnimateChildren from './code-examples/animate-children.js'
+import FinalAnimationNoFadeIn from './code-examples/final-animation-no-fade-in'
+import FinalAnimation from './code-examples/final-animation'
 
 export { default as theme } from './theme'
 
+
 <Head>
-  <title>Presentation Title</title>
+  <title>React Flip Toolkit Tutorial</title>
 </Head>
 
-# Hello
+___
+
+# React Flip Toolkit
+## Quick interactive tutorial
 
 ---
-
-## Edit this file
-
-To create your presentation
-
-```notes
-- Create speaker notes in fenced code blocks
-```
+To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this Code Sandbox</a>
 
 ---
+## We're going to build the following animation with [React-Flip-Toolkit](https://github.com/aholachek/react-flip-toolkit)
+#### (In only about 120 lines of React code)
+---
+#### Click me
+<FinalAnimation />
+---
+## First, let's build out all the components without any animations
+#### That's normally a good way to start
+---
+<NoAnimation />
+---
+<CodeSurfer
+  notes="animatedList.js"
+  code={require("!raw-loader!./code-examples/no-animation.js")}
+  theme={oceanicNext}
+  steps={[
+    { range: [4, 15], notes: "Here's our first of three components, a simple ListItem"},
+    { range: [17, 33], notes: "Next, we have a component for the larger, expanded ListItem when a user has selected it"},
+    { range: [35, 63], notes: "Finally, here's the parent AnimatedList component "},
+    { range: [48, 55], notes: "Based on the value in this.state.focused, it will either show the ListItem or ExpandedListItem"},
+  ]}
+/>
+---
+## Next, let's add a basic FLIP animation with React-Flip-Toolkit
+---
+#### (If you need a refresher on what FLIP animations are, [check out this article](https://css-tricks.com/animating-layouts-with-the-flip-technique/))
+---
+<CodeSurfer
+  notes="Adding basic FLIP to animatedList.js"
+  code={require("!raw-loader!./code-examples/basic-animation.js")}
+  theme={oceanicNext}
+  steps={[
+    { lines: [2], notes: "Import the Flipper and Flipped components" },
+    { lines: [7, 18], notes: 'Now, wrap both the ListItem and ExpandedListItem in Flipped components' },
+    { lines: [22, 38], notes: '' },
+    { tokens: {7: [4,5, 6,7,8,9,10,11,12], 22: [4,5,6,7,8,9, 10,11,12]}, notes: "The Flipped components have FlipId props matching them across renders" },
+    { lines: [49,50, 51,52,53, 70], notes: "Finally, replace the wrapper div in AnimatedList with the parent Flipper component" },
+    { lines: [52], notes: "Give the Flipper component a custom spring setting for a subtle bouncy animation" },
+   { lines: [50], notes: "And provide it a flipKey prop that updates every time an animation should happen" },
+  ]}
+/>
 
-<https://github.com/jxnblk/mdx-deck>
+---
+### Now, the transition between `ListItem` and `ExpandedListItem` will automatically be tweened.
+---
+<BasicAnimation />
+---
+## It looks...okay
+---
+## Next up
+### We need to add a counter transform to the parent to prevent warping
+---
+
+<CodeSurfer
+  notes="animatedList.js"
+  code={require("!raw-loader!./code-examples/inverse.js")}
+  theme={oceanicNext}
+  steps={[
+    { lines: [9, 18], notes: "Add another Flipped component to wrap the contents of ListItem" },
+    { lines: [26, 40], notes: "and here, in ExpandedListItem" },
+    { tokens: { 7: [3,4,5,6,7,8,9,10,11,12], 9: [3, 4, 5,6,7,8,9,10,11,12], 26: [] }, notes: "And give both new Flipped components an inverseFlipId that refers to the parent Flipped component's flipId" }
+  ]}
+/>
+---
+<InverseAnimation />
+---
+### By using the <code>inverseFlipId</code> prop, we've totally canceled the effects of the parent transform on the children
+---
+### Now, we can add FLIP animations to the children so they animate smoothly as well
+---
+
+<CodeSurfer
+  notes="animatedList.js"
+  code={require("!raw-loader!./code-examples/animate-children-no-shouldflip.js")}
+  theme={oceanicNext}
+  steps={[
+    { lines: [11, 13, 16, 18], notes: "Wrap the children of ListItem in their own Flipped components" },
+    { lines: [32, 34, 37, 39], notes: "Do the same for the corresponding children of ExpandedListItem" },
+  ]}
+/>
+---
+### Unfortunately, now the children of the list items are animating even when we don't want them to
+---
+### It doesn't look terrible but it could be bad for performance
+---
+<AnimateChildrenNoShouldFlip />
+---
+### We need a way to tell the `Flipped` component to only animate for active components
+---
+
+<CodeSurfer
+  notes="animatedList.js"
+  code={require("!raw-loader!./code-examples/animate-children.js")}
+  theme={oceanicNext}
+  steps={[
+    { lines: [71], notes: "We can pass in a decisionData prop to Flipper with some data that will help Flipped components decide whether to animate" },
+  { lines: [6,7], notes: "Next, we'll add a shouldFlip function which only returns true if the ListItem's index is currently focused or was focused immediately prior" },
+   { tokens: {14 : [13, 14,15,16,17,18,19,20,21], 21: [0,1,2,3,4,5,6,7]}, notes: "We'll pass shouldFlip in as a prop to the child Flipped components" },
+    { tokens: {10: [12,13,14,15,16,17,18,19,20,21]}, notes: "The parent Flipped components will add a prop called shouldInvert which also takes the shouldFlip function"}
+  ]}
+/>
+---
+<AnimateChildren />
+---
+### Finally, let's add in some staggered transitions so the animation looks more natural
+---
+
+<CodeSurfer
+  notes="animatedList.js"
+  code={require("!raw-loader!./code-examples/final-animation-no-fade-in.js")}
+  theme={oceanicNext}
+  steps={[
+    { lines: [13, 21,30, 55], tokens: {44: [13,14,15,16,17,18]}, notes: "Add stagger props to the Flipped components with unique string ids identifying which stagger group they belong to" },
+    { lines: [13, 21,30, 55], tokens: {44: [13,14,15,16,17,18]}, notes: "Here, we've got an outer 'card' stagger group, and an inner 'card-content' one for the contents of the animating ListItem" },
+    { range: [84, 89], notes: "Provide configuration for the stagger in the Flipper component's staggerConfig prop" },
+  ]}
+/>
+
+---
+## And we're done!
+---
+<FinalAnimationNoFadeIn/>
+---
+## Well, almost
+### We need to add the fade in transition for the contents of the `ExpandedListItem`
+---
+### Since it's a simple fade in effect, we can just toggle a CSS class rather than using FLIP
+---
+
+<CodeSurfer
+  notes="animatedList.js"
+  code={require("!raw-loader!./code-examples/final-animation.js")}
+  theme={oceanicNext}
+  steps={[
+    { lines: [47,48,49,50], notes: "The onStart callback on the Flipped component allows us to do some work at the beginning of a FLIP animation" },
+    { lines: [47,48,49,50], notes: 'Here, toggling the "animated-in" class kicks off a keyframe animation on the children' }
+  ]}
+/>
+---
+<FinalAnimation/>
+---
+ You can check out the final code in this [Code Sandbox](https://codesandbox.io/s/wnnxl223n8)
+---
+## Thanks for making it to the final slide
+### Here's another link to [React Flip Toolkit](https://github.com/aholachek/react-flip-toolkit)
