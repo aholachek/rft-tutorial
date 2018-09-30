@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Flipper, Flipped } from "react-flip-toolkit"
 const listData = [...Array(3).keys()]
 
-require("!style-loader!css-loader!./styles.css")
+
 
 const shouldFlip = index => (prev, current) =>
   index === prev || index === current
@@ -60,7 +60,7 @@ const ExpandedListItem = ({ index, onClick }) => (
           </div>
           <div className="additional-content">
             {listData.slice(0, 3).map(i => (
-              <div />
+              <div key={i} />
             ))}
           </div>
         </div>
@@ -92,7 +92,7 @@ export default class AnimatedList extends Component {
         <ul className="list">
           {listData.map(index => {
             return (
-              <li>
+              <li key={index}>
                 {index === this.state.focused ? (
                   <ExpandedListItem
                     index={this.state.focused}

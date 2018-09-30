@@ -33,7 +33,7 @@ const ExpandedListItem = ({ index, onClick }) => (
           </div>
           <div className="additional-content">
             {listData.map(i => (
-              <div />
+              <div key={i} />
             ))}
           </div>
         </div>
@@ -58,7 +58,7 @@ export default class AnimatedList extends Component {
         <ul className="list">
           {listData.map(index => {
             return (
-              <li>
+              <li key={index}>
                 {index === this.state.focused ? (
                   <ExpandedListItem
                     index={this.state.focused}

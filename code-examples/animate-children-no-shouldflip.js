@@ -13,7 +13,7 @@ const ListItem = ({ index, onClick }) => (
           </Flipped>
           <div className="description">
             {listData.map(i => (
-              <Flipped flipId={`description-${index}-${i}`}>
+              <Flipped flipId={`description-${index}-${i}`} key={i}>
                 <div />
               </Flipped>
             ))}
@@ -34,14 +34,14 @@ const ExpandedListItem = ({ index, onClick }) => (
           </Flipped>
           <div className="description">
             {listData.map(i => (
-              <Flipped flipId={`description-${index}-${i}`}>
+              <Flipped flipId={`description-${index}-${i}`} key={i}>
                 <div />
               </Flipped>
             ))}
           </div>
           <div className="additional-content">
             {listData.map(i => (
-              <div />
+              <div key={i} />
             ))}
           </div>
         </div>
@@ -66,7 +66,7 @@ export default class AnimatedList extends Component {
         <ul className="list">
           {listData.map(index => {
             return (
-              <li>
+              <li key={index}>
                 {index === this.state.focused ? (
                   <ExpandedListItem
                     index={this.state.focused}
