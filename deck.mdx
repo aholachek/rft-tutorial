@@ -21,7 +21,7 @@ export { default as theme } from './theme'
 ___
 
 # React Flip Toolkit
-## Quick interactive tutorial
+## Interactive tutorial
 
 ---
 To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this Code Sandbox</a>
@@ -29,13 +29,13 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
 ---
 ## We're going to build the following animation with [React-Flip-Toolkit](https://github.com/aholachek/react-flip-toolkit)
 ### In about 120 lines of React code
-#### (Click a card on the next slide to see the animation)
 ---
-#### Click me
+(Click a card on the next slide to see the animation)
+---
 <FinalAnimation />
 ---
 ## First, let's build out all the components without any animations
-#### That's often a good way to start
+### That's often a good way to start
 ---
 <NoAnimation />
 ---
@@ -115,7 +115,7 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
 ---
 <AnimateChildrenNoShouldFlip />
 ---
-### We need a way to tell the `Flipped` component to only animate for active components
+### We need a way to tell the `Flipped` component to only animate active components
 ---
 
 <CodeSurfer
@@ -139,9 +139,9 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
   code={require("!raw-loader!./code-examples/final-animation-no-fade-in.js")}
   theme={oceanicNext}
   steps={[
-    { lines: [13, 21, 30, 48, 55], tokens: {44: [13,14,15,16,17,18]}, notes: ()=> <span> Add stagger props to the <code>Flipped</code> components with unique string ids identifying which stagger group they belong to"</span>},
+    { lines: [13, 21, 30, 48, 55], tokens: {44: [13,14,15,16,17,18]}, notes: ()=> <span> Add stagger props to the <code>Flipped</code> components with unique string ids identifying which stagger group they belong to</span>},
     { lines: [13], notes: ()=> <span> We've got an outer <code>card</code> stagger group...</span>},
-    { lines: [21, 30], notes: ()=> <span> and an inner <code>card-contents</code> group</span> }
+    { lines: [21, 30], notes: ()=> <span> and an inner <code>card-content</code> group</span> }
   ]}
 />
 
