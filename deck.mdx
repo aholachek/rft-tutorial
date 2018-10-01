@@ -21,18 +21,14 @@ export { default as theme } from './theme'
 ___
 
 # React Flip Toolkit
-## Interactive tutorial
-
+## Interactive Tutorial
+<a href="https://codesandbox.io/s/lr92x011nm">Fork this Code Sandbox to follow along</a>
 ---
-Fork this <a href="https://codesandbox.io/s/lr92x011nm">Code Sandbox</a> to follow along!
-
----
-## We're going to build the following animation with [React-Flip-Toolkit](https://github.com/aholachek/react-flip-toolkit)
-### In about 120 lines of React code
----
-(Click a card on the next slide to see the animation)
+### We're going to build the following animation in response to a user click on any of the cards:
 ---
 <FinalAnimation />
+---
+### With [React-Flip-Toolkit](https://github.com/aholachek/react-flip-toolkit) we can build the animation declaratively in about 120 lines of JS
 ---
 ## First, let's build out all the components without any animations
 ### That's often a good way to start
@@ -53,7 +49,8 @@ Fork this <a href="https://codesandbox.io/s/lr92x011nm">Code Sandbox</a> to foll
 ---
 ## Next, let's add a basic FLIP animation with React-Flip-Toolkit
 ---
-#### (If you need a refresher on what FLIP animations are, [check out this article](https://css-tricks.com/animating-layouts-with-the-flip-technique/))
+### If you need a refresher on what FLIP animations are
+### [check out this article](https://css-tricks.com/animating-layouts-with-the-flip-technique/)
 ---
 <CodeSurfer
   notes="Adding basic FLIP to animatedList.js"
@@ -139,9 +136,10 @@ Fork this <a href="https://codesandbox.io/s/lr92x011nm">Code Sandbox</a> to foll
   code={require("!raw-loader!./code-examples/final-animation-no-fade-in.js")}
   theme={oceanicNext}
   steps={[
-    { lines: [13, 21, 30, 48, 55], tokens: {44: [13,14,15,16,17,18]}, notes: ()=> <span> Add stagger props to the <code>Flipped</code> components with unique string ids identifying which stagger group they belong to</span>},
+    { lines: [13, 21, 30, 55], tokens: {44: [13,14,15,16,17,18], 48: [13, 14,15,16,17,18]}, notes: ()=> <span> Add stagger props to the <code>Flipped</code> components with unique string ids identifying which stagger group they belong to</span>},
     { lines: [13], notes: ()=> <span> We've got an outer <code>card</code> stagger group...</span>},
-    { lines: [21, 30], notes: ()=> <span> and an inner <code>card-content</code> group</span> }
+    { lines: [21, 30], notes: ()=> <span> and an inner <code>card-content</code> group</span> },
+    { lines: [84, 85, 86, 87, 88, 89], notes: ()=> <span> Finally, we'll configure the <code>card</code> stagger group to reverse when a card is being closed</span> }
   ]}
 />
 
@@ -175,5 +173,5 @@ Fork this <a href="https://codesandbox.io/s/lr92x011nm">Code Sandbox</a> to foll
 ---
 ## Credits
 - Animation concept taken from [this UX Planet article](https://uxplanet.org/animation-in-ui-design-from-concept-to-reality-85c49907b19d)
-- Presentation built with [Code Surfer](https://github.com/pomber/code-surfer) and [mdx-deck](https://github.com/jxnblk/mdx-deck)
+- Slides built with [Code Surfer](https://github.com/pomber/code-surfer) and [mdx-deck](https://github.com/jxnblk/mdx-deck)
 
