@@ -24,7 +24,7 @@ ___
 ## Interactive tutorial
 
 ---
-To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this Code Sandbox</a>
+Fork this <a href="https://codesandbox.io/s/lr92x011nm">Code Sandbox</a> to follow along!
 
 ---
 ## We're going to build the following animation with [React-Flip-Toolkit](https://github.com/aholachek/react-flip-toolkit)
@@ -37,8 +37,6 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
 ## First, let's build out all the components without any animations
 ### That's often a good way to start
 ---
-<NoAnimation />
----
 <CodeSurfer
   notes="animatedList.js"
   code={require("!raw-loader!./code-examples/no-animation.js")}
@@ -50,6 +48,8 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
     { range: [48, 55], notes: ()=> <span> Based on the value in <code>this.state.focused</code>, it will either show the <code>ListItem</code> or <code>ExpandedListItem</code></span>},
   ]}
 />
+---
+<NoAnimation />
 ---
 ## Next, let's add a basic FLIP animation with React-Flip-Toolkit
 ---
@@ -115,7 +115,7 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
 ---
 <AnimateChildrenNoShouldFlip />
 ---
-### We need a way to tell the `Flipped` component to only animate active components
+### We need a way to tell the `Flipped` component to only animate in certain situations
 ---
 
 <CodeSurfer
@@ -132,7 +132,7 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
 ---
 <AnimateChildren />
 ---
-### Finally, let's add in some staggered transitions so the animation looks more natural
+### Finally, let's add in some stagger to the transitions so that the movement looks more natural
 ---
 
 <CodeSurfer
@@ -172,3 +172,8 @@ To follow along, you can <a href="https://codesandbox.io/s/lr92x011nm">fork this
 ---
 ## Thanks for making it to the final slide
 ### Here's another link to [React Flip Toolkit](https://github.com/aholachek/react-flip-toolkit)
+---
+## Credits
+- Animation concept taken from [this UX Planet article](https://uxplanet.org/animation-in-ui-design-from-concept-to-reality-85c49907b19d)
+- Presentation built with [Code Surfer](https://github.com/pomber/code-surfer) and [mdx-deck](https://github.com/jxnblk/mdx-deck)
+
