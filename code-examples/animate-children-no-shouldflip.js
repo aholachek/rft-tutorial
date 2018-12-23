@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { Flipper, Flipped } from "react-flip-toolkit"
+import React, { Component } from 'react'
+import { Flipper, Flipped } from 'react-flip-toolkit'
 
 const listData = [...Array(3).keys()]
 

@@ -1,5 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700");
+
+/* fix bad code surfer responsiveness */
+
+.prism-code {
+  font-size: 18px !important;
+  @media (min-width: 1200px) {
+    font-size: 24px !important;
+  }
+  @media (min-width: 1400px) {
+    font-size: 26px !important;
+  }
+  @media (min-width: 1500px) {
+    font-size: auto !important;
+  }
+}
 
 .staggered-list-content {
   width: 400px;
@@ -17,7 +32,7 @@
   width: 100%;
 }
 .list li:before {
-  display: none !Important;
+  display: none !important;
 }
 
 .list li + li {
@@ -134,7 +149,6 @@ p {
 }
 
 code {
-  color: #79B5F2;
-  font-family: 'Source Code Pro', Menlo, monospace !important;
+  color: #79b5f2;
+  font-family: "Source Code Pro", Menlo, monospace !important;
 }
-
